@@ -60,14 +60,11 @@ protocol_number,protocol_name
 58,IPv6-ICMP
 59,IPv6-NoNxt
 60,IPv6-Opts
-61,
 62,CFTP
-63,
 64,SAT-EXPAK
 65,KRYPTOLAN
 66,RVD
 67,IPPC
-68,
 69,SAT-MON
 70,VISA
 71,IPCV
@@ -98,7 +95,6 @@ protocol_number,protocol_name
 96,SCC-SP
 97,ETHERIP
 98,ENCAP
-99,
 100,GMTP
 101,IFMP
 102,PNNI
@@ -113,7 +109,6 @@ protocol_number,protocol_name
 111,IPX-in-IP
 112,VRRP
 113,PGM
-114,
 115,L2TP
 116,DDX
 117,IATP
