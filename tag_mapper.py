@@ -83,14 +83,42 @@ def write_output(output_file, tag_counts, port_protocol_counts, protocol_mapping
 def main():
     flow_log_file = 'flow_log.txt'  # Path to the given flow log file
     lookup_file = 'lookup.csv'  # Path to the given CSV lookup file
-    protocol_file = 'protocol_mapping.csv'  # Path to the protocol mapping CSV file, taken from https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
+    protocol_file = 'protocol_mapping.csv'  # Path to the protocol mapping CSV file
     output_file = 'output.csv'  # Path for the output CSV file
 
-    protocol_mapping = load_protocol_mapping(protocol_file)
-    lookup_table = load_lookup_table(lookup_file)
-    tag_counts, port_protocol_counts = parse_flow_log(flow_log_file, lookup_table, protocol_mapping)
+    missing_files = []
+    
+    # Check for missing files using try-except
+    try:
+        with open(lookup_file):
+            pass
+    except FileNotFoundError:
+        missing_files.append(lookup_file)
 
-    write_output(output_file, tag_counts, port_protocol_counts, protocol_mapping)
+    try:
+        with open(flow_log_file):
+            pass
+    except FileNotFoundError:
+        missing_files.append(flow_log_file)
+
+    if missing_files:
+        print(f"Error: The following required files are missing: {', '.join(missing_files)}.")
+        return
+
+    try:
+        # Load protocol mapping
+        protocol_mapping = load_protocol_mapping(protocol_file)
+        # Load lookup table
+        lookup_table = load_lookup_table(lookup_file)
+        # Parse the flow log
+        tag_counts, port_protocol_counts = parse_flow_log(flow_log_file, lookup_table, protocol_mapping)
+        # Write output to file
+        write_output(output_file, tag_counts, port_protocol_counts, protocol_mapping)
+        # Success message
+        print(f"Success: The results have been written to {output_file}.")
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
     main()
