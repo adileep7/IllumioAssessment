@@ -1,9 +1,8 @@
 # IllumioAssessment
 ## How to Run:
 1. Clone this repository
-2. Prepare Data Files
-Add the following files to the project directory:
-flow_log.txt (for flow log data)
+2. Add the following files to the project directory:
+flow_log.txt (for flow log data) and 
 lookup.csv (for the lookup table)
 4. Ensure you have Python 3.x installed.
 5. Run the application by executing the main script with the command: python3 tag_mapper.py
